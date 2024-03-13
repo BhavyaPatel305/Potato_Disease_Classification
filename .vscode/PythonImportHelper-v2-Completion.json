@@ -80,7 +80,7 @@
         "kind": 5,
         "importPath": "api.main",
         "description": "api.main",
-        "peekOfCode": "app = FastAPI()\n# Load the saved tensorflow model\n# For now just loading model number 1\nMODEL = tf.keras.models.load_model(\"../saved_models/1\")\n# Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']\nCLASS_NAMES = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# ping method to make sure server is alive.\n@app.get(\"/ping\")\nasync def ping():\n    return \"Hello, I am alive.\"",
+        "peekOfCode": "app = FastAPI()\n# Load the saved tensorflow model\n# For now just loading model number 1\nMODEL = tf.keras.models.load_model(\"../saved_models/2\")\n# Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']\nCLASS_NAMES = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# ping method to make sure server is alive.\n@app.get(\"/ping\")\nasync def ping():\n    return \"Hello, I am alive.\"",
         "detail": "api.main",
         "documentation": {}
     },
@@ -89,7 +89,7 @@
         "kind": 5,
         "importPath": "api.main",
         "description": "api.main",
-        "peekOfCode": "MODEL = tf.keras.models.load_model(\"../saved_models/1\")\n# Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']\nCLASS_NAMES = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# ping method to make sure server is alive.\n@app.get(\"/ping\")\nasync def ping():\n    return \"Hello, I am alive.\"\n# Function to take bytes as input and return np.ndarray\n# Used to get the image in form of numpy array, which can be used for predictions\ndef read_file_as_image(data) -> np.ndarray:",
+        "peekOfCode": "MODEL = tf.keras.models.load_model(\"../saved_models/2\")\n# Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']\nCLASS_NAMES = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# ping method to make sure server is alive.\n@app.get(\"/ping\")\nasync def ping():\n    return \"Hello, I am alive.\"\n# Function to take bytes as input and return np.ndarray\n# Used to get the image in form of numpy array, which can be used for predictions\ndef read_file_as_image(data) -> np.ndarray:",
         "detail": "api.main",
         "documentation": {}
     },
