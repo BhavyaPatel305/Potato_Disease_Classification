@@ -9,10 +9,27 @@ from io import BytesIO
 from PIL import Image
 # Import Tensorflow
 import tensorflow as tf
+# Adding middlewares to avoid CORS(Cross Origin Resource Sharing) Error
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # Create an app/ instance of FAST API
 app = FastAPI()
 
+# If we upload image, to our website without the code written below, it will give Cross Origin Resource Sharing Error
+# as website is running on port 3000 and backend fast api server is running on port 8000
+origins = [
+    "*"
+    #"https://localhost",
+    # React.JS UI is running on port 3000
+    #"https://localhost:3000",
+    
+]
+# Here we are telling FAST API, add middleware and allow the above origins
+app.add_middleware(
+    CORSMiddleware, 
+    allow_origins=origins, 
+    allow_credentials=True, allow_methods=["*"], allow_headers=["*"],)
 # Load the saved tensorflow model
 # For now just loading model number 1
 MODEL = tf.keras.models.load_model("../saved_models/5")

@@ -153,20 +153,24 @@ export const ImageUpload = () => {
   let confidence = 0;
 
   const sendFile = async () => {
-    if (image) {
-      let formData = new FormData();
-      formData.append("file", selectedFile);
-      let res = await axios({
-        method: "post",
-        url: process.env.REACT_APP_API_URL,
-        data: formData,
-      });
+  if (image) {
+    let formData = new FormData();
+    formData.append("file", selectedFile);
+    try {
+      let res = await axios.post(process.env.REACT_APP_API_URL, formData);
       if (res.status === 200) {
         setData(res.data);
+      } else {
+        // Handle unexpected status code
+        console.error("Unexpected status code:", res.status);
       }
-      setIsloading(false);
+    } catch (error) {
+      // Handle network or other errors
+      console.error("Error:", error);
     }
+    setIsloading(false);
   }
+};
 
   const clearData = () => {
     setData(null);
@@ -213,7 +217,7 @@ export const ImageUpload = () => {
       <AppBar position="static" className={classes.appbar}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            CodeBasics: Potato Disease Classification
+            Bhavya Patel: Potato Disease Classification
           </Typography>
           <div className={classes.grow} />
           <Avatar src={cblogo}></Avatar>
