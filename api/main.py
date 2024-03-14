@@ -15,7 +15,7 @@ app = FastAPI()
 
 # Load the saved tensorflow model
 # For now just loading model number 1
-MODEL = tf.keras.models.load_model("../saved_models/2")
+MODEL = tf.keras.models.load_model("../saved_models/5")
 # Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
