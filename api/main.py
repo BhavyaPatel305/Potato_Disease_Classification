@@ -32,7 +32,7 @@ app.add_middleware(
     allow_credentials=True, allow_methods=["*"], allow_headers=["*"],)
 # Load the saved tensorflow model
 # For now just loading model number 1
-MODEL = tf.keras.models.load_model("../saved_models/5")
+MODEL = tf.keras.models.load_model("../saved_models/6/6.h5")
 # Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
