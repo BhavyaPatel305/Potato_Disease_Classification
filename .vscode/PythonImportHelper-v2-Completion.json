@@ -58,6 +58,14 @@
         "documentation": {}
     },
     {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
         "label": "tensorflow",
         "kind": 6,
         "isExtraImport": true,
@@ -72,6 +80,68 @@
         "description": "fastapi.middleware.cors",
         "isExtraImport": true,
         "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "storage",
+        "importPath": "google.cloud",
+        "description": "google.cloud",
+        "isExtraImport": true,
+        "detail": "google.cloud",
+        "documentation": {}
+    },
+    {
+        "label": "contextlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "zipfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "detail": "zipfile",
         "documentation": {}
     },
     {
@@ -106,7 +176,7 @@
         "kind": 5,
         "importPath": "api.main",
         "description": "api.main",
-        "peekOfCode": "MODEL = tf.keras.models.load_model(\"../saved_models/5\")\n# Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']\nCLASS_NAMES = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# ping method to make sure server is alive.\n@app.get(\"/ping\")\nasync def ping():\n    return \"Hello, I am alive.\"\n# Function to take bytes as input and return np.ndarray\n# Used to get the image in form of numpy array, which can be used for predictions\ndef read_file_as_image(data) -> np.ndarray:",
+        "peekOfCode": "MODEL = tf.keras.models.load_model(\"../saved_models/6/6.h5\")\n# Class Names need to be consistent with: ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']\nCLASS_NAMES = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# ping method to make sure server is alive.\n@app.get(\"/ping\")\nasync def ping():\n    return \"Hello, I am alive.\"\n# Function to take bytes as input and return np.ndarray\n# Used to get the image in form of numpy array, which can be used for predictions\ndef read_file_as_image(data) -> np.ndarray:",
         "detail": "api.main",
         "documentation": {}
     },
@@ -117,6 +187,87 @@
         "description": "api.main",
         "peekOfCode": "CLASS_NAMES = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# ping method to make sure server is alive.\n@app.get(\"/ping\")\nasync def ping():\n    return \"Hello, I am alive.\"\n# Function to take bytes as input and return np.ndarray\n# Used to get the image in form of numpy array, which can be used for predictions\ndef read_file_as_image(data) -> np.ndarray:\n    # data is basically bytes\n    image = np.array(Image.open(BytesIO(data))) # Open/Read those bytes as PIL Image, and then convert PIL Image into numpy array",
         "detail": "api.main",
+        "documentation": {}
+    },
+    {
+        "label": "download_blob",
+        "kind": 2,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "def download_blob(bucket_name, source_blob_name, destination_file_name):\n    \"\"\"Downloads a blob from the bucket.\"\"\"\n    # Download the model from the bucket\n    storage_client = storage.Client()\n    # Get the bucket\n    bucket = storage_client.get_bucket(bucket_name)\n    # Get the blob\n    blob = bucket.blob(source_blob_name)\n    # Download the blob to this destination: destination_file_name\n    blob.download_to_filename(destination_file_name)",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "def predict(request):\n    # model variable is global\n    global model\n    # This function will be executed multiple times, so execute this method only on the first call\n    if model is None:\n        # Download the model\n        download_blob(\n            # Name of the bucket\n            BUCKET_NAME,\n            # This is in the bucket on cloud",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "model = None\ninterpreter = None\ninput_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "interpreter",
+        "kind": 5,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "interpreter = None\ninput_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "input_index",
+        "kind": 5,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "input_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "output_index",
+        "kind": 5,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "output_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "class_names",
+        "kind": 5,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "class_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):\n    \"\"\"Downloads a blob from the bucket.\"\"\"\n    # Download the model from the bucket",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "BUCKET_NAME",
+        "kind": 5,
+        "importPath": "gcp.main",
+        "description": "gcp.main",
+        "peekOfCode": "BUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):\n    \"\"\"Downloads a blob from the bucket.\"\"\"\n    # Download the model from the bucket\n    storage_client = storage.Client()\n    # Get the bucket",
+        "detail": "gcp.main",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup",
+        "kind": 2,
+        "importPath": "mobile-app.node_modules.react-native.ReactAndroid.src.main.third-party.android.support.v7.appcompat.aar-unpacker",
+        "description": "mobile-app.node_modules.react-native.ReactAndroid.src.main.third-party.android.support.v7.appcompat.aar-unpacker",
+        "peekOfCode": "def cleanup(path):\n    yield path\n    shutil.rmtree(path)\nif __name__ == '__main__':\n    with zipfile.ZipFile(sys.argv[1], 'r') as z:\n        with cleanup(tempfile.mkdtemp()) as temp_path:\n            z.extractall(temp_path, filter(lambda n: n.startswith(sys.argv[2]), z.namelist()))\n            shutil.move(os.path.join(temp_path, sys.argv[2]), sys.argv[3])",
+        "detail": "mobile-app.node_modules.react-native.ReactAndroid.src.main.third-party.android.support.v7.appcompat.aar-unpacker",
         "documentation": {}
     }
 ]
