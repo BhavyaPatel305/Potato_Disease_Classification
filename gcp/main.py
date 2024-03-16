@@ -63,7 +63,7 @@ def predict(request):
         Image.open(image).convert("RGB").resize((256, 256)) # image resizing
     )
 
-    image = image/255 # normalize the image in 0 to 1 range
+    #image = image/255 # normalize the image in 0 to 1 range
     # model.predict expects a batch of images, so we need to add a dimension to the image
     img_array = tf.expand_dims(image, 0)
     # Predict the class of the image
