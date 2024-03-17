@@ -91,60 +91,6 @@
         "documentation": {}
     },
     {
-        "label": "contextlib",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "contextlib",
-        "description": "contextlib",
-        "detail": "contextlib",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "shutil",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "shutil",
-        "description": "shutil",
-        "detail": "shutil",
-        "documentation": {}
-    },
-    {
-        "label": "sys",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
-        "documentation": {}
-    },
-    {
-        "label": "tempfile",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "tempfile",
-        "description": "tempfile",
-        "detail": "tempfile",
-        "documentation": {}
-    },
-    {
-        "label": "zipfile",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "zipfile",
-        "description": "zipfile",
-        "detail": "zipfile",
-        "documentation": {}
-    },
-    {
         "label": "read_file_as_image",
         "kind": 2,
         "importPath": "api.main",
@@ -259,15 +205,6 @@
         "description": "gcp.main",
         "peekOfCode": "BUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):\n    \"\"\"Downloads a blob from the bucket.\"\"\"\n    # Download the model from the bucket\n    storage_client = storage.Client()\n    # Get the bucket",
         "detail": "gcp.main",
-        "documentation": {}
-    },
-    {
-        "label": "cleanup",
-        "kind": 2,
-        "importPath": "mobile-app.node_modules.react-native.ReactAndroid.src.main.third-party.android.support.v7.appcompat.aar-unpacker",
-        "description": "mobile-app.node_modules.react-native.ReactAndroid.src.main.third-party.android.support.v7.appcompat.aar-unpacker",
-        "peekOfCode": "def cleanup(path):\n    yield path\n    shutil.rmtree(path)\nif __name__ == '__main__':\n    with zipfile.ZipFile(sys.argv[1], 'r') as z:\n        with cleanup(tempfile.mkdtemp()) as temp_path:\n            z.extractall(temp_path, filter(lambda n: n.startswith(sys.argv[2]), z.namelist()))\n            shutil.move(os.path.join(temp_path, sys.argv[2]), sys.argv[3])",
-        "detail": "mobile-app.node_modules.react-native.ReactAndroid.src.main.third-party.android.support.v7.appcompat.aar-unpacker",
         "documentation": {}
     }
 ]

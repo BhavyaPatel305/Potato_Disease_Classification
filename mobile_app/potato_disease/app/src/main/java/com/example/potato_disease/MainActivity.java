@@ -1,5 +1,6 @@
 package com.example.potato_disease;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,28 +55,55 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose Image Source");
+        builder.setItems(new CharSequence[]{"Gallery", "Camera"}, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                        galleryIntent.setType("image/*");
+                        startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
+                        break;
+                    case 1:
+                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivityForResult(cameraIntent, PICK_IMAGE_REQUEST);
+                        } else {
+                            Toast.makeText(MainActivity.this, "No camera app found", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                }
+            }
+        });
+        builder.show();
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null) {
+                Uri imageUri = data.getData();
 
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                    imageView.setImageBitmap(bitmap);
+                    processAndSendImage(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getExtras() != null && data.getExtras().get("data") != null) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(bitmap);
                 processAndSendImage(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
+
 
     private void processAndSendImage(Bitmap bitmap) {
         // Process the bitmap (resize, convert to suitable format, etc.)
@@ -143,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayPredictionResult(String predictedClass, double confidence) {
         // Display the predicted class and confidence
-        final String predictionText = "Predicted class: " + predictedClass + ", Confidence: " + confidence;
+        final String predictionText = "Predicted Class: " + predictedClass + "\nConfidence: " + confidence + "%";
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
