@@ -158,7 +158,7 @@
         "kind": 5,
         "importPath": "gcp.main",
         "description": "gcp.main",
-        "peekOfCode": "model = None\ninterpreter = None\ninput_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket",
+        "peekOfCode": "model = None\ninterpreter = None\ninput_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = ['Bacterial Spot',\n 'Early Blight',\n 'Late Blight',\n 'Leaf Mold',\n 'Septoria Leaf Spot',",
         "detail": "gcp.main",
         "documentation": {}
     },
@@ -167,7 +167,7 @@
         "kind": 5,
         "importPath": "gcp.main",
         "description": "gcp.main",
-        "peekOfCode": "interpreter = None\ninput_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)",
+        "peekOfCode": "interpreter = None\ninput_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = ['Bacterial Spot',\n 'Early Blight',\n 'Late Blight',\n 'Leaf Mold',\n 'Septoria Leaf Spot',\n 'Spider Mites Two Spotted Spider Mite',",
         "detail": "gcp.main",
         "documentation": {}
     },
@@ -176,7 +176,7 @@
         "kind": 5,
         "importPath": "gcp.main",
         "description": "gcp.main",
-        "peekOfCode": "input_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing",
+        "peekOfCode": "input_index = None\noutput_index = None\n# Define the class names for prediction output\nclass_names = ['Bacterial Spot',\n 'Early Blight',\n 'Late Blight',\n 'Leaf Mold',\n 'Septoria Leaf Spot',\n 'Spider Mites Two Spotted Spider Mite',\n 'Target Spot',",
         "detail": "gcp.main",
         "documentation": {}
     },
@@ -185,7 +185,7 @@
         "kind": 5,
         "importPath": "gcp.main",
         "description": "gcp.main",
-        "peekOfCode": "output_index = None\n# Define the class names for prediction output\nclass_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):",
+        "peekOfCode": "output_index = None\n# Define the class names for prediction output\nclass_names = ['Bacterial Spot',\n 'Early Blight',\n 'Late Blight',\n 'Leaf Mold',\n 'Septoria Leaf Spot',\n 'Spider Mites Two Spotted Spider Mite',\n 'Target Spot',\n 'YellowLeaf Curl Virus',",
         "detail": "gcp.main",
         "documentation": {}
     },
@@ -194,7 +194,7 @@
         "kind": 5,
         "importPath": "gcp.main",
         "description": "gcp.main",
-        "peekOfCode": "class_names = [\"Early Blight\", \"Late Blight\", \"Healthy\"]\n# Here you need to put the name of your GCP bucket\nBUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):\n    \"\"\"Downloads a blob from the bucket.\"\"\"\n    # Download the model from the bucket",
+        "peekOfCode": "class_names = ['Bacterial Spot',\n 'Early Blight',\n 'Late Blight',\n 'Leaf Mold',\n 'Septoria Leaf Spot',\n 'Spider Mites Two Spotted Spider Mite',\n 'Target Spot',\n 'YellowLeaf Curl Virus',\n 'Mosaic Virus',\n 'Healthy']",
         "detail": "gcp.main",
         "documentation": {}
     },
@@ -203,7 +203,7 @@
         "kind": 5,
         "importPath": "gcp.main",
         "description": "gcp.main",
-        "peekOfCode": "BUCKET_NAME = \"bhavya-patel-potato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):\n    \"\"\"Downloads a blob from the bucket.\"\"\"\n    # Download the model from the bucket\n    storage_client = storage.Client()\n    # Get the bucket",
+        "peekOfCode": "BUCKET_NAME = \"bhavya-patel-tomato-disease-classification\" \n# blob: binary large object\n# source_blob_name: The blob on the bucket\n# destination_file_name: download_blob function will be running on a different server in Google Cloud and that server will be downloading model from the bucket(Created on Google Cloud)\n# so when it download's it locally on that server in the cloud, destination_file_name is the destination file path where it should be storing\ndef download_blob(bucket_name, source_blob_name, destination_file_name):\n    \"\"\"Downloads a blob from the bucket.\"\"\"\n    # Download the model from the bucket\n    storage_client = storage.Client()\n    # Get the bucket",
         "detail": "gcp.main",
         "documentation": {}
     }

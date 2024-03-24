@@ -11,10 +11,19 @@ input_index = None
 output_index = None
 
 # Define the class names for prediction output
-class_names = ["Early Blight", "Late Blight", "Healthy"]
+class_names = ['Bacterial Spot',
+ 'Early Blight',
+ 'Late Blight',
+ 'Leaf Mold',
+ 'Septoria Leaf Spot',
+ 'Spider Mites Two Spotted Spider Mite',
+ 'Target Spot',
+ 'YellowLeaf Curl Virus',
+ 'Mosaic Virus',
+ 'Healthy']
 
 # Here you need to put the name of your GCP bucket
-BUCKET_NAME = "bhavya-patel-potato-disease-classification" 
+BUCKET_NAME = "bhavya-patel-tomato-disease-classification" 
 
 # blob: binary large object
 # source_blob_name: The blob on the bucket
@@ -45,13 +54,13 @@ def predict(request):
             # Name of the bucket
             BUCKET_NAME,
             # This is in the bucket on cloud
-            "models/potato.h5",
+            "models/tomato.h5",
             # Download model locally into the tmp directory of the server
-            "/tmp/potato.h5",
+            "/tmp/tomato.h5",
         )
         # Loading the model
         # Load the model with custom object mapping
-        model = tf.keras.models.load_model("/tmp/potato.h5")
+        model = tf.keras.models.load_model("/tmp/tomato.h5")
 
 
     # request has parameter called files and it has a key called file(Similar to Postman)
@@ -81,4 +90,6 @@ def predict(request):
 
 # To deploy this model on gcp, in gcp shell, using cd, come inside gcp folder and then run this command:
 # gcloud functions deploy predict --runtime python38 --trigger-http --memory 1024 --project ordinal-ember-417403
-# After that go to Postman and send an image to this URL using POST:  https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict
+# After that go to Postman and send an image to this URL using POST(For Potato Model):  https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict
+# For Tomato Model Command on gcp shell:  gcloud functions deploy predict --runtime python38 --trigger-http --memory 1024 --project ethereal-brace-418207
+# Tomato URL:  https://us-central1-ethereal-brace-418207.cloudfunctions.net/predict
