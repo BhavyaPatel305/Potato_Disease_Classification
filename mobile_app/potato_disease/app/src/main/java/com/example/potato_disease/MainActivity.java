@@ -7,8 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,16 +38,35 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private Spinner plantSpinner;
     private ImageView imageView;
     private Button selectImageButton;
+    private String selectedPlant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        plantSpinner = findViewById(R.id.plantSpinner);
         imageView = findViewById(R.id.imageView);
         selectImageButton = findViewById(R.id.selectImageButton);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.plant_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        plantSpinner.setAdapter(adapter);
+
+        plantSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedPlant = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         selectImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +132,20 @@ public class MainActivity extends AppCompatActivity {
         // For example, let's assume you have a method to convert the bitmap to byte array
         byte[] imageBytes = bitmapToByteArray(bitmap);
 
-        // Now, send the image bytes to the prediction link
-        sendImageToPredictionLink(imageBytes);
+        // Now, send the image bytes to the prediction link based on the selected plant
+        String predictionLink;
+        if ("Potato".equals(selectedPlant)) {
+            System.out.println("Potato Plant Selected.");
+            predictionLink = "https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict";
+        } else if ("Tomato".equals(selectedPlant)) {
+            System.out.println("Tomato Plant Selected.");
+            predictionLink = "https://us-central1-ethereal-brace-418207.cloudfunctions.net/predict";
+        } else {
+            Toast.makeText(this, "Invalid plant selection", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        sendImageToPredictionLink(imageBytes, predictionLink);
     }
 
     private byte[] bitmapToByteArray(Bitmap bitmap) {
@@ -120,11 +154,8 @@ public class MainActivity extends AppCompatActivity {
         return stream.toByteArray();
     }
 
-    private void sendImageToPredictionLink(byte[] imageBytes) {
+    private void sendImageToPredictionLink(byte[] imageBytes, String predictionLink) {
         OkHttpClient client = new OkHttpClient();
-
-        // Change this URL to your prediction link
-        String url = "https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict";
 
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -133,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url(url)
+                .url(predictionLink)
                 .post(requestBody)
                 .build();
 
@@ -172,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayPredictionResult(String predictedClass, double confidence) {
         // Display the predicted class and confidence
-        final String predictionText = "Predicted Class: " + predictedClass + "\nConfidence: " + confidence + "%";
+        final String predictionText = "Predicted Disease: " + predictedClass + "\nConfidence: " + confidence + "%";
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
