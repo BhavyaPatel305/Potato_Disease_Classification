@@ -11,9 +11,9 @@ input_index = None
 output_index = None
 
 # Define the class names for prediction output
-class_names = ['Cherry Healthy', 'Cherry Powdery mildew']
+class_names = ['Citrus Black spot', 'Citrus Healthy', 'Citrus canker', 'Citrus greening']
 # Here you need to put the name of your GCP bucket
-BUCKET_NAME = "cherry_disease_classification" 
+BUCKET_NAME = "citrus_disease_classification" 
 
 # blob: binary large object
 # source_blob_name: The blob on the bucket
@@ -44,13 +44,13 @@ def predict(request):
             # Name of the bucket
             BUCKET_NAME,
             # This is in the bucket on cloud
-            "models/cherry.h5",
+            "models/citrus.h5",
             # Download model locally into the tmp directory of the server
-            "/tmp/cherry.h5",
+            "/tmp/citrus.h5",
         )
         # Loading the model
         # Load the model with custom object mapping
-        model = tf.keras.models.load_model("/tmp/cherry.h5")
+        model = tf.keras.models.load_model("/tmp/citrus.h5")
 
 
     # request has parameter called files and it has a key called file(Similar to Postman)
@@ -89,3 +89,5 @@ def predict(request):
 # Bell Pepper URL:  https://us-central1-bell-pepper-disease-420204.cloudfunctions.net/predict
 # Cherry Model Command on gcp shell:  gcloud functions deploy predict --runtime python38 --trigger-http --memory 1024 --project moonlit-helper-420205
 # Cherry URL:  https://us-central1-moonlit-helper-420205.cloudfunctions.net/predict
+# Citrus Model Command on gcp shell:  gcloud functions deploy predict --runtime python38 --trigger-http --memory 1024 --project citrus-disease-classification
+# Citrus URL:  https://us-central1-citrus-disease-classification.cloudfunctions.net/predict
