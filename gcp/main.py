@@ -11,10 +11,9 @@ input_index = None
 output_index = None
 
 # Define the class names for prediction output
-class_names = ['Apple Black rot', 'Apple Healthy', 'Apple Scab', 'Cedar apple rust']
-
+class_names = ['Bell pepper Bacterial spot', 'Bell pepper Healthy']
 # Here you need to put the name of your GCP bucket
-BUCKET_NAME = "apple_disease_classification" 
+BUCKET_NAME = "bell_pepper_disease_classification" 
 
 # blob: binary large object
 # source_blob_name: The blob on the bucket
@@ -45,13 +44,13 @@ def predict(request):
             # Name of the bucket
             BUCKET_NAME,
             # This is in the bucket on cloud
-            "models/apple.h5",
+            "models/bell_pepper.h5",
             # Download model locally into the tmp directory of the server
-            "/tmp/apple.h5",
+            "/tmp/bell_pepper.h5",
         )
         # Loading the model
         # Load the model with custom object mapping
-        model = tf.keras.models.load_model("/tmp/apple.h5")
+        model = tf.keras.models.load_model("/tmp/bell_pepper.h5")
 
 
     # request has parameter called files and it has a key called file(Similar to Postman)
@@ -86,3 +85,5 @@ def predict(request):
 # Tomato URL:  https://us-central1-ethereal-brace-418207.cloudfunctions.net/predict
 # Apple Model Command on gcp shell:  gcloud functions deploy predict --runtime python38 --trigger-http --memory 1024 --project unified-century-420204
 # Apple URL:  https://us-central1-unified-century-420204.cloudfunctions.net/predict
+# Bell Pepper Model Command on gcp shell:  gcloud functions deploy predict --runtime python38 --trigger-http --memory 1024 --project bell-pepper-disease-420204
+# Bell Pepper URL:  https://us-central1-bell-pepper-disease-420204.cloudfunctions.net/predict
