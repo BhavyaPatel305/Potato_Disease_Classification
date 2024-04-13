@@ -135,12 +135,22 @@ public class MainActivity extends AppCompatActivity {
         // Now, send the image bytes to the prediction link based on the selected plant
         String predictionLink;
         if ("Potato".equals(selectedPlant)) {
-            System.out.println("Potato Plant Selected.");
             predictionLink = "https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict";
         } else if ("Tomato".equals(selectedPlant)) {
-            System.out.println("Tomato Plant Selected.");
             predictionLink = "https://us-central1-ethereal-brace-418207.cloudfunctions.net/predict";
-        } else {
+        }else if ("Apple".equals(selectedPlant)) {
+            predictionLink = "https://us-central1-unified-century-420204.cloudfunctions.net/predict";
+        } else if ("Bell Pepper".equals(selectedPlant)) {
+            predictionLink = "https://us-central1-bell-pepper-disease-420204.cloudfunctions.net/predict";
+        }else if ("Cherry".equals(selectedPlant)) {
+            predictionLink = "https://us-central1-moonlit-helper-420205.cloudfunctions.net/predict";
+        }else if ("Citrus".equals(selectedPlant)) {
+            predictionLink = "https://us-central1-citrus-disease-classification.cloudfunctions.net/predict";
+        }else if ("Corn".equals(selectedPlant)) {
+            predictionLink = "https://us-central1-sodium-coil-420205.cloudfunctions.net/predict";
+        }else if ("Grape".equals(selectedPlant)) {
+            predictionLink = "https://us-central1-elite-dreamer-417403.cloudfunctions.net/predict";
+        }else {
             Toast.makeText(this, "Invalid plant selection", Toast.LENGTH_SHORT).show();
             return;
         }

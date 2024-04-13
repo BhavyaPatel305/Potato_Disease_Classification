@@ -5,6 +5,12 @@
     <string-array name="plant_types">
         <item>Potato</item>
         <item>Tomato</item>
+        <item>Apple</item>
+        <item>Bell Pepper</item>
+        <item>Cherry</item>
+        <item>Citrus</item>
+        <item>Corn</item>
+        <item>Grape</item>
     </string-array>
     <string name="select_plant_type">Select Plant Type</string>
 </resources>
