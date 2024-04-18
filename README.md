@@ -1,7 +1,7 @@
 # Potato_Disease_Classification
-This project aims to provide a user-friendly **Web Interface + Android Application** for classifying diseases in potato plant leaves using machine learning techniques. It leverages a deep learning model trained on a dataset of potato plant leaf images to predict the presence of diseases such as Early Blight, Late Blight, or Healthy leaves.
+This project aims to provide a user-friendly **Web Interface + Android Application** for classifying diseases in plant leaves using machine learning techniques. It leverages a deep learning model trained on a dataset of plant leaf images to predict the presence of diseases such as Early Blight, Late Blight, or Healthy leaves, etc.
 # Website Features
-1: **Image Upload**: Users can upload images of potato plant leaves through a drag-and-drop interface.
+1: **Image Upload**: Users can upload images of plant leaves through a drag-and-drop interface.
 
 
 2: **Real-time Processing**: The uploaded image is processed in real-time to generate predictions about the presence of diseases.
@@ -118,21 +118,17 @@ This project aims to provide a user-friendly **Web Interface + Android Applicati
   - Callback: For handling asynchronous responses from HTTP requests and updating the UI accordingly.
 
 # Prediction Link
-The app sends images to a prediction link hosted on Google Cloud Platform (GCP) for processing. The prediction link is [https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict](https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict).
+The app sends images to a prediction link hosted on Google Cloud Platform (GCP) for processing. The prediction link for Potato Plant is [https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict](https://us-central1-ordinal-ember-417403.cloudfunctions.net/predict). And similarly we have links for other plant models.
 
 # Android App Screenshots
-# Welcome Page
-![WhatsApp Image 2024-03-16 at 08 47 40_5a622d65](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/995628cb-a758-4232-80a4-da4d5562c756)
-# Uploading an Image - Actual Early Blight Leaf Image
-![WhatsApp Image 2024-03-16 at 08 48 07_d5c0fcf6](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/e674361c-d9fb-429a-a6e1-debc9735a797)
+# Homepage
+![image](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/3c50213c-efb3-46bd-bc3e-7f51dfde5dfc)
+# Select Plant To Detect Disease For
+![image](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/4af552fd-2e9a-4e89-97f1-ce5581d87f43)
+# Select Source of Image
+![image](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/2b618a3a-aed9-4f41-ac4a-a17dd282ff99)
 # Prediction - Early Blight
-![WhatsApp Image 2024-03-16 at 08 49 11_e44952d7](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/5853a65b-3241-4961-81c3-bb9ac9bc8d0c)
-# Prediction - Healthy
-![WhatsApp Image 2024-03-16 at 08 52 24_d39cbee6](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/aca437e0-3d4a-4cd4-95c8-7a495776e25c)
-# Prediction - Late Blight
-![WhatsApp Image 2024-03-16 at 08 50 59_64b17a42](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/4401bffd-e1c5-4479-90e2-11f6ba93be3d)
-
-
+![image](https://github.com/BhavyaPatel305/Potato_Disease_Classification/assets/93842768/008c58bc-2972-41d1-ab36-e62d9c1d0ab7)
 
 
 
